@@ -214,3 +214,27 @@ body {
 .todo-list::-webkit-scrollbar-thumb:hover {
     background: #999;
 }
+
+/* Responsive design addition */
+@media (max-width: 600px) {
+    .todo-header h1 {
+        font-size: 2rem;
+    }
+    
+    .todo-input-container {
+        flex-direction: column;
+    }
+    
+    .add-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .filter-container {
+        flex-wrap: wrap;
+    }
+    
+    .todo-item {
+        padding: 15px 20px;
+    }
+}
