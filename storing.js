@@ -21,6 +21,7 @@ for(const todo of todos){
 addTodoBtn.addEventListener("click",()=>{
 
  let todotext=inputTag.value;
+ console.log("Todo title is:", todotext); 
  if(todotext=""){
     return ;
  }
