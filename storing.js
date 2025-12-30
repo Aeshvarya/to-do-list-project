@@ -22,14 +22,16 @@ addTodoBtn.addEventListener("click",()=>{
 
  let todotext=inputTag.value;
  console.log("Todo title is:", todotext); 
- if(todotext=""){
+ if(todotext==""){
     return ;
  }
+ console.log("Todo title is:", todotext); 
 let  todo={
     id: todos.length,
     title: todotext,
     isCompleted: false
     }
+      console.log("Todo object:", todo);
     todos.push(todo);
     localStorage.setItem("todos", JSON.stringify(todos))
 inputTag.value="";
