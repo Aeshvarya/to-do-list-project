@@ -3,6 +3,18 @@ let inputTag = document.getElementById("todoInput");
 let todos = [];
 let todostring=localStorage.getItem("todos");
 const todoListUl = document.getElementById("todoList");
+
+
+
+const itemleft = document.getElementById("itemsLeft");
+function updateLeft() {
+    const count = todos.filter(todo => !todo.isCompleted).length;
+
+    itemleft.textContent =
+        count === 1 ? "1 item left" : `${count} items left`;
+}
+
+
 if(todostring){
     todos=JSON.parse(todostring);
 }
@@ -16,22 +28,20 @@ for(const todo of todos){
         </li>`
 }
    todoListUl.innerHTML = string;
+    updateLeft();
 };
 
 addTodoBtn.addEventListener("click",()=>{
 
  let todotext=inputTag.value;
- console.log("Todo title is:", todotext); 
  if(todotext==""){
     return ;
  }
- console.log("Todo title is:", todotext); 
 let  todo={
     id: todos.length,
     title: todotext,
     isCompleted: false
     }
-      console.log("Todo object:", todo);
     todos.push(todo);
     localStorage.setItem("todos", JSON.stringify(todos))
 inputTag.value="";
@@ -67,4 +77,17 @@ todoListUl.addEventListener("click", (e) => {
     }
 
     localStorage.setItem("todos", JSON.stringify(todos));
+});
+
+todoListUl.addEventListener("click", (e) => {
+
+    if (!e.target.classList.contains("delete-btn")) {
+        return;
+    }
+    const li = e.target.parentNode;   
+    const id = li.id;                 
+    todos = todos.filter(todo => "todo-" + todo.id !== id);
+    localStorage.setItem("todos", JSON.stringify(todos));  
+    li.remove();
+     updateLeft();
 });
