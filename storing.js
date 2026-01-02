@@ -40,4 +40,31 @@ inputTag.value="";
 
 addtodos();
 
+const todocheckbox = document.querySelectorAll(".todo-checkbox")
+todoListUl.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("todo-checkbox")) {
+        return;
+    }
+    const li = e.target.parentNode;
+    const id = li.id; 
 
+    if (e.target.checked) {
+        li.classList.add("completed");
+
+        todos = todos.map(todo =>
+            "todo-" + todo.id === id
+                ? { ...todo, isCompleted: true }
+                : todo
+        );
+    } else {
+        li.classList.remove("completed");
+
+        todos = todos.map(todo =>
+            "todo-" + todo.id === id
+                ? { ...todo, isCompleted: false }
+                : todo
+        );
+    }
+
+    localStorage.setItem("todos", JSON.stringify(todos));
+});
